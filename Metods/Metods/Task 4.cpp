@@ -1,28 +1,28 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <cmath>
 using namespace std;
 
 double f(double x)  
 {
-	// легко интегрируемая функция f(x) при w(x) = 1
+	// Р»РµРіРєРѕ РёРЅС‚РµРіСЂРёСЂСѓРµРјР°СЏ С„СѓРЅРєС†РёСЏ f(x) РїСЂРё w(x) = 1
 	return 3 * pow(x, 4) + x + sin(x);
 }
 double w(double x)
 {
-	// функция тождественно равная единице 
+	// С„СѓРЅРєС†РёСЏ С‚РѕР¶РґРµСЃС‚РІРµРЅРЅРѕ СЂР°РІРЅР°СЏ РµРґРёРЅРёС†Рµ 
 	return 1;
 }
 
 double easyIntegral(double a, double b) 
 {
-	// интеграл от функции f(x) = 3 * x^2 + x
+	// РёРЅС‚РµРіСЂР°Р» РѕС‚ С„СѓРЅРєС†РёРё f(x) = 3 * x^2 + x
 	double Jh = 0.6*(pow(b, 5) - pow(a, 5)) + 0.5*(pow(b, 2) - pow(a, 2)) - cos(b) + cos(a);
 	return Jh;
 }
 
 double leftRiemannSum(double a, double b, double m)
 {
-	// метод левых прямоугольников
+	// РјРµС‚РѕРґ Р»РµРІС‹С… РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєРѕРІ
 	double h = (b - a) / m;
 	double sum = 0;
 	for (int i = 0; i < m; ++i)
@@ -35,7 +35,7 @@ double leftRiemannSum(double a, double b, double m)
 
 double rightRiemannSum(double a, double b, double m)
 {
-	// метод правых прямоугольников
+	// РјРµС‚РѕРґ РїСЂР°РІС‹С… РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєРѕРІ
 	double h = (b - a) / m;
 	double sum = 0;
 	for (int i = 0; i < m; ++i)
@@ -48,7 +48,7 @@ double rightRiemannSum(double a, double b, double m)
 
 double midpointRiemannSum(double a, double b, double m)
 {
-	// метод средних прямоугольников
+	// РјРµС‚РѕРґ СЃСЂРµРґРЅРёС… РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєРѕРІ
 	double h = (b - a) / m;
 	double sum = 0;
 	for (int i = 0; i < m; ++i)
@@ -61,7 +61,7 @@ double midpointRiemannSum(double a, double b, double m)
 
 double trapezoidalMethod(double a, double b, double m)
 {
-	// метод трапеций
+	// РјРµС‚РѕРґ С‚СЂР°РїРµС†РёР№
 	double h = (b - a) / m;
 	double sum = 0;
 	double f1 = 0;
@@ -78,7 +78,7 @@ double trapezoidalMethod(double a, double b, double m)
 
 double simpson(double a, double b, double m)
 {
-	// метод Симпсона
+	// РјРµС‚РѕРґ РЎРёРјРїСЃРѕРЅР°
 	double h = (b - a) / m;
 	double sum1 = 0;
 	double sum2 = 0;
@@ -97,28 +97,28 @@ double simpson(double a, double b, double m)
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	int m; //число промежутков деления [A,B] в составной КФ
+	int m; //С‡РёСЃР»Рѕ РїСЂРѕРјРµР¶СѓС‚РєРѕРІ РґРµР»РµРЅРёСЏ [A,B] РІ СЃРѕСЃС‚Р°РІРЅРѕР№ РљР¤
 	double a, b;
-	cout << "Введите число m" << endl;
+	cout << "Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ m" << endl;
 	cin >> m;
-	cout << "Введите числа A и B" << endl;
+	cout << "Р’РІРµРґРёС‚Рµ С‡РёСЃР»Р° A Рё B" << endl;
 	cin >> a >> b;
 	double J = easyIntegral(a, b);
-	printf("\nТочное значение интеграла от f(x)*w(x) = J = %.10f\n\n", easyIntegral(a, b));
+	printf("\nРўРѕС‡РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РёРЅС‚РµРіСЂР°Р»Р° РѕС‚ f(x)*w(x) = J = %.10f\n\n", easyIntegral(a, b));
 
-    printf("Приближенное значение интеграла f(x) * w(x) методом левых прямоугольников = %.10f\n", leftRiemannSum(a, b, m)); 
-	printf("Погрешность = %.10f\n",abs (J-  leftRiemannSum(a, b, m)));
+    printf("РџСЂРёР±Р»РёР¶РµРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РёРЅС‚РµРіСЂР°Р»Р° f(x) * w(x) РјРµС‚РѕРґРѕРј Р»РµРІС‹С… РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєРѕРІ = %.10f\n", leftRiemannSum(a, b, m)); 
+	printf("РџРѕРіСЂРµС€РЅРѕСЃС‚СЊ = %.10f\n",abs (J-  leftRiemannSum(a, b, m)));
 
-	printf("Приближенное значение интеграла f(x) * w(x) методом правых прямоугольников = %.10f\n", rightRiemannSum(a, b, m));
-	printf("Погрешность = %.10f\n", abs(J - rightRiemannSum(a, b, m)));
+	printf("РџСЂРёР±Р»РёР¶РµРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РёРЅС‚РµРіСЂР°Р»Р° f(x) * w(x) РјРµС‚РѕРґРѕРј РїСЂР°РІС‹С… РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєРѕРІ = %.10f\n", rightRiemannSum(a, b, m));
+	printf("РџРѕРіСЂРµС€РЅРѕСЃС‚СЊ = %.10f\n", abs(J - rightRiemannSum(a, b, m)));
 
-	printf("Приближенное значение интеграла f(x) * w(x) методом средних прямоугольников = %.10f\n", midpointRiemannSum(a, b, m));
-	printf("Погрешность = %.10f\n", abs(J - midpointRiemannSum(a, b, m)));
+	printf("РџСЂРёР±Р»РёР¶РµРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РёРЅС‚РµРіСЂР°Р»Р° f(x) * w(x) РјРµС‚РѕРґРѕРј СЃСЂРµРґРЅРёС… РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєРѕРІ = %.10f\n", midpointRiemannSum(a, b, m));
+	printf("РџРѕРіСЂРµС€РЅРѕСЃС‚СЊ = %.10f\n", abs(J - midpointRiemannSum(a, b, m)));
 
-	printf("Приближенное значение интеграла f(x) * w(x) методом трапеции = %.10f\n", trapezoidalMethod(a, b, m));
-	printf("Погрешность = %.10f\n", abs(J - trapezoidalMethod(a, b, m)));
+	printf("РџСЂРёР±Р»РёР¶РµРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РёРЅС‚РµРіСЂР°Р»Р° f(x) * w(x) РјРµС‚РѕРґРѕРј С‚СЂР°РїРµС†РёРё = %.10f\n", trapezoidalMethod(a, b, m));
+	printf("РџРѕРіСЂРµС€РЅРѕСЃС‚СЊ = %.10f\n", abs(J - trapezoidalMethod(a, b, m)));
 
-	printf("Приближенное значение интеграла f(x) * w(x) методом Симпсона = %.10f\n", simpson(a, b, m));
-	printf("Погрешность = %.10f\n", abs(J - simpson(a, b, m)));
+	printf("РџСЂРёР±Р»РёР¶РµРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РёРЅС‚РµРіСЂР°Р»Р° f(x) * w(x) РјРµС‚РѕРґРѕРј РЎРёРјРїСЃРѕРЅР° = %.10f\n", simpson(a, b, m));
+	printf("РџРѕРіСЂРµС€РЅРѕСЃС‚СЊ = %.10f\n", abs(J - simpson(a, b, m)));
 
 }
